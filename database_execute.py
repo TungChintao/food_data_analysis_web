@@ -21,15 +21,17 @@ class DataManager:
             print('insert ok')
         except Exception as e:
             self.db.rollback()
-            print(e)
+            print('insert shop error: ', e)
 
     def trans_to_gooddata(self, data):
         cursor = self.db.cursor()
-        sql3 = 'INSERT INTO milktea_good(goodID, shopid, title, price, value) values(%s, %s, %s, %s, %s)'
+        sql3 = 'INSERT INTO milktea_good(shopid, title, price, value) values(%s, %s, %s, %s)'
         try:
-            cursor.execute(sql3, (data['good_id'], data['shop_id'], data['title'], data['price'], data['value']))
+            cursor.execute(sql3, (data['shop_id'], data['title'], data['price'], data['value']))
             self.db.commit()
-        except:
+            print('insert ok')
+        except Exception as e:
             self.db.rollback()
+            print('insert good error: ', e)
 
 

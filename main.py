@@ -42,8 +42,9 @@ class page_spider:
         input = browser.find_element_by_id('login-password')
         input.click()
         time.sleep(1)
+        # input.send_keys(self.password)
         for i in range(0,len(self.password)):
-            input.send_keys(i)
+            input.send_keys(self.password[i])
             time.sleep(0.1)
 
         time.sleep(2)
